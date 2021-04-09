@@ -27,5 +27,9 @@ functions:
           path: /auction
 
 custom:
+  ActionsTable:
+    # Intrinsic functions help us
+    name: !Ref AuctionsTable
+    arn: !GetAtt AuctionsTable.Arn
   bundle:
     linting: false
