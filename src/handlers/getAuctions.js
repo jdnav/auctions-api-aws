@@ -5,7 +5,7 @@ import createError from 'http-errors';
 // Creates a DynamoDB document client
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-async function getAuction(event, context) {
+async function getAuctions(event, context) {
 
     let auctions;
 
@@ -29,4 +29,4 @@ async function getAuction(event, context) {
 }
 
 // Function wrapped in commonMiddleware
-export const handler = commonMiddleware(getAuction);
+export const handler = commonMiddleware(getAuctions);
