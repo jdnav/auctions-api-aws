@@ -8,7 +8,7 @@ import createError from 'http-errors';
 // Creates a DynamoDB document client
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-async function getAuctions(event, context) {
+async function getAuction(event, context) {
 
     let auctions;
 
@@ -32,9 +32,9 @@ async function getAuctions(event, context) {
 }
 
 // Function wrapped in middleware
-export const handler = middy(getAuctions)
-    .use(httpJsonBodyParser())
-    .use(httpEventNormalizer())
-    .use(httpErrorHandler());
+export const handler = middy(getAuction)
+    .use(httpJsonBodyParser()) // parses the request body when it's a JSON and converts it to an object
+    .use(httpEventNormalizer()) // Adjust the api gateway event objects to prevent accidental wrong params. It reduces room for errors
+    .use(httpErrorHandler()); // handles common http errors and returns proper responses
 
 

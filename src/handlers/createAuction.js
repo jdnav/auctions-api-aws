@@ -12,7 +12,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 async function createAuction(event, context) {
 
   // const body = JSON.parse(event.body);
-  const { title } = JSON.parse(event.body);
+  const { title } = event.body;
 
   const now = new Date();
 
@@ -45,8 +45,8 @@ async function createAuction(event, context) {
 
 // Function wrapped in middleware
 export const handler = middy(createAuction)
-  .use(httpJsonBodyParser())
-  .use(httpEventNormalizer())
-  .use(httpErrorHandler());
+  .use(httpJsonBodyParser()) // parses the request body when it's a JSON and converts it to an object
+  .use(httpEventNormalizer()) // Adjust the api gateway event objects to prevent accidental wrong params. It reduces room for errors
+  .use(httpErrorHandler()); // handles common http errors and returns proper responses
 
 
