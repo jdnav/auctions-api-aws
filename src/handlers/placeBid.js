@@ -6,6 +6,12 @@ import { getAuctionById } from './getAuction'
 // Creates a DynamoDB document client
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
+/**
+ * This function places a new bid as long as the amount is higher than previous one and the auction is still opened
+ * @param {*} event 
+ * @param {*} context 
+ * @returns 
+ */
 async function placeBid(event, context) {
 
     const { id } = event.pathParameters;
@@ -14,6 +20,12 @@ async function placeBid(event, context) {
     // Before making the update, let's check if bid amount is higher than previous one
     const auction = await getAuctionById(id);
 
+    // Check if auction is opened
+    if (auction.status.toUpperCase() !== 'OPEN') {
+        throw new createError.Forbidden(`You cannot bid on closed auctions.`)
+    }
+
+    // Check if amount is higher than previous one
     if (amount <= auction.highestBid.amount) {
         throw new createError.Forbidden(`Your bid must be higher than ${auction.highestBid.amount}`)
     }
