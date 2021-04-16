@@ -29,25 +29,11 @@ https://www.serverless.com/framework/docs/
 ## Middleware
 Middy is a very simple middleware engine that allows you to simplify your AWS Lambda code when using Node.js.
 https://github.com/middyjs/middy
-`npm i @middy/core @middy/http-event-normalizer @middy/http-error-handler @middy/http-json-body-parser`
+`npm i @middy/core @middy/http-event-normalizer @middy/http-error-handler @middy/http-json-body-parser @middy/validator`
 `npm i http-errors`
 
-## createAuction.js
-### create item dynamoDB
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
+## JSON Schema
+- https://json-schema.org/
 
-## getAuction.js
-### get item dynamoDB
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#get-property
-
-## getAuctions.js
-### get/scan items dynamoDB
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#scan-property
-
-## placeBid.js
-### update item dynamoDB
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#update-property
-
-## getEndedAuctions.js
-### access items from a table by primary key or a secondary index
-- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#query-property
+## DynamoDB SDK
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html
